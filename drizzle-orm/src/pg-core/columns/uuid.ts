@@ -23,9 +23,9 @@ export class PgUUIDBuilder<T extends ColumnBuilderBaseConfig<'string', 'PgUUID'>
 
 	/**
 	 * Adds `default gen_random_uuid()` (v4) or `default uuidv7()` (v7) to the column definition.
-	 * @param version The UUID version to generate. Defaults to 'v4'.
+	 * @param version The UUID version to generate. If omitted, uses 'v4'.
 	 */
-	defaultRandom(version: 'v4' | 'v7' = 'v4'): ReturnType<this['default']> {
+	defaultRandom(version?: 'v4' | 'v7'): ReturnType<this['default']> {
 		if (version === 'v7') {
 			return this.default(sql`uuidv7()`) as ReturnType<this['default']>;
 		}
